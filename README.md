@@ -1,2 +1,19 @@
 # test-4
-A swhurl app (typescript)
+
+A swhurl app
+
+A TypeScript app on the [swhurl platform](https://github.com/samclement/swhurl-platform), made from the [swhurl TypeScript template](https://github.com/samclement/swhurl-app-template-typescript). Every push to `main` is checked, published to `ghcr.io/<owner>/test-4` and deployed to staging; production changes through **Promote to production**. What the image must provide, the checks and the dependency updates: the [template's guide](https://github.com/samclement/swhurl-app-template-typescript#readme). What the app needs from the platform: [`swhurl.yaml`](swhurl.yaml).
+
+An HTTP service: `src/server.ts` answers on port 8080; the platform probes `GET /healthz`.
+
+## Local development
+
+```bash
+npm install
+npm run dev                             # the SDK stays off locally (the image turns it on)
+curl http://localhost:8080/healthz
+npm run check                           # type-check, as CI does
+npm run build && npm test               # the tests run against the built app
+```
+
+To see telemetry locally, `npm run build`, then `OTEL_TRACES_EXPORTER=console node --import ./dist/instrumentation.js dist/main.js` prints spans (or run an OpenTelemetry collector on `localhost:4318` and drop the variable).

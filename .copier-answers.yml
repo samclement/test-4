@@ -1,0 +1,7 @@
+# Written by Copier from samclement/swhurl-app-template-typescript; `copier update` reads it. Do not edit.
+_commit: v0.1.4-2-g63b807f
+_src_path: https://github.com/samclement/swhurl-app-template-typescript.git
+app_name: test-4
+database: none
+description: A swhurl app
+kind: web
